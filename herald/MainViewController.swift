@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class MainViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler, UITabBarDelegate {
+class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler, UITabBarDelegate {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("i reveive message from web")
         print(message.name)
@@ -59,11 +59,12 @@ class MainViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler
         }
     }
     
+    
     //@IBOutlet weak var webView: WKWebView!
     var webView: WKWebView!
     var subWebView: WKWebView!
     @IBOutlet weak var tabbar: UITabBar!
-    @IBOutlet weak var subTitle: UILabel!
+    @IBOutlet weak var subTitle: UIImageView!
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var subNavBar: UIView!
     
@@ -79,7 +80,7 @@ class MainViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler
 
         self.navBar.alpha = 1
         self.tabbar.alpha = 1
-        self.subTitle.text = "小猴偷米"
+        //self.subTitle.text = "小猴偷米"
         UIView.animate(withDuration: 0.5, animations: {
             self.subWebView.frame.origin.x += self.subWebView.frame.width
             self.subNavBar.frame.origin.x += self.subNavBar.frame.width
@@ -184,11 +185,22 @@ class MainViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler
         
     }
     
+    let tab_icons = ["home_tab_icon", "activity_tab_icon", "notification_tab_icon", "personal_tab_icon"]
+    let tab_icons_selected = ["home_tab_icon_selected", "activity_tab_icon_selected", "notification_tab_icon_selected", "personal_tab_icon_selected"]
+    
+    func setTabBar(){
+        for (index, item) in (self.tabbar.items?.enumerated())!{
+            item.image = UIImage(named: tab_icons[index])
+            item.selectedImage = UIImage(named: tab_icons_selected[index])
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createView()
         self.loadSubView()
-        self.subWebView.load(URLRequest(url: URL(string: "http://localhost:8080")!))
+        //self.setTabBar()
+        self.subWebView.load(URLRequest(url: URL(string: "http://hybrid.myseu.cn")!))
         self.subWebView.frame.origin.x = self.subWebView.frame.width
         self.subNavBar.frame.origin.x = self.subNavBar.frame.width
         self.tabbar.delegate = self
@@ -200,7 +212,7 @@ class MainViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let myURL = URL(string: "http://localhost:8080")
+        let myURL = URL(string: "http://hybrid.myseu.cn")
         let myRequest = URLRequest(url: myURL!)
         self.webView.load(myRequest)
 
