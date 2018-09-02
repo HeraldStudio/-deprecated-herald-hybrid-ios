@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 
 class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler, UITabBarDelegate {
+    // 处理JS调用
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("i reveive message from web")
         print(message.name)
@@ -38,6 +39,7 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
         }
     }
     
+    // 处理TabBar事件
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print("one tabbar \(item)is selected")
         if(item.title == "主页"){
@@ -74,13 +76,11 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
     @IBOutlet weak var toast: UIView!
     @IBOutlet weak var toastText: UILabel!
     
-    
+    // 从字页面返回
     @IBAction func gotoSub(_ sender: UIButton) {
         print("do somethinf")
-
         self.navBar.alpha = 1
         self.tabbar.alpha = 1
-        //self.subTitle.text = "小猴偷米"
         UIView.animate(withDuration: 0.5, animations: {
             self.subWebView.frame.origin.x += self.subWebView.frame.width
             self.subNavBar.frame.origin.x += self.subNavBar.frame.width
@@ -90,6 +90,7 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
 
     }
     
+    // 子页面跳转
     func pushRoute(to route:String, for title:String){
         self.navTitle.text = title
         self.tabbar.alpha = 0
@@ -99,13 +100,11 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
             self.subNavBar.frame.origin.x -= self.subNavBar.frame.width
         }, completion: {_ in
             self.navBar.alpha = 0
-
         })
     }
     
+    // 模仿Toast
     func toast(with text:String){
-        //self.toast.frame.width = self.toastText.frame.width + 20
-        //self.toastText.frame.width = self.toast.frame.width
         UIView.animate(withDuration: 0.5, animations: {
             self.toast.alpha = 0.8
             self.toastText.text = text
@@ -124,6 +123,7 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
     }
     
     func logout(){
+        // 清除token
         UserDefaults.standard.removeObject(forKey: "token")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let loginVC = storyboard.instantiateViewController(withIdentifier: "loginController") as? LoginViewController else{
@@ -133,12 +133,12 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
         self.present(loginVC, animated: true, completion: nil)
     }
     
+    // TODO 清除缓存
     func clearCache(){
         
     }
     
-    @IBOutlet var myview: UIView!
-    
+    // 主WebView
     func createView(){
         let webConfiguration = WKWebViewConfiguration()
         let userContent = WKUserContentController()
@@ -157,11 +157,11 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
         userContent.addUserScript(script)
         webConfiguration.userContentController = userContent
         self.webView = WKWebView(frame: CGRect(x: 0, y: self.navBar.frame.height+self.navBar.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height-self.navBar.frame.height-49) , configuration: webConfiguration)
-        //self.webView = WKWebView(frame: .zero, configuration: webConfiguration)
         self.webView.uiDelegate = self
         self.view.addSubview(self.webView)
     }
     
+    // 副WebView
     func loadSubView(){
         let webConfiguration = WKWebViewConfiguration()
         let userContent = WKUserContentController()
@@ -190,8 +190,8 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
     
     func setTabBar(){
         for (index, item) in (self.tabbar.items?.enumerated())!{
-            item.image = UIImage(named: tab_icons[index])
-            item.selectedImage = UIImage(named: tab_icons_selected[index])
+            item.image = UIImage(named: tab_icons[index])?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+            item.selectedImage = UIImage(named: tab_icons_selected[index])?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         }
     }
     
@@ -199,22 +199,26 @@ class MainViewController:UIViewController, WKUIDelegate, WKScriptMessageHandler,
         super.viewDidLoad()
         self.createView()
         self.loadSubView()
-        //self.setTabBar()
-        self.subWebView.load(URLRequest(url: URL(string: "http://hybrid.myseu.cn")!))
+        self.setTabBar()
+        
         self.subWebView.frame.origin.x = self.subWebView.frame.width
         self.subNavBar.frame.origin.x = self.subNavBar.frame.width
+        
         self.tabbar.delegate = self
         self.view.addSubview(self.tabbar)
+        
         self.toast.alpha = 0
         self.toast.layer.cornerRadius = 5
         self.toast.clipsToBounds = true
         // Do any additional setup after loading the view.
     }
     
+    let url:String = "http://localhost:8080" //"http://hybrid.myseu.cn"
     override func viewDidAppear(_ animated: Bool) {
-        let myURL = URL(string: "http://hybrid.myseu.cn")
+        let myURL = URL(string: self.url)
         let myRequest = URLRequest(url: myURL!)
         self.webView.load(myRequest)
+        self.subWebView.load(URLRequest(url: URL(string: self.url)!))
 
     }
 

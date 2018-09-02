@@ -9,9 +9,22 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    // 实现变脸效果
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.password{
+            self.loginLogo.image = UIImage(named: "icon_password")
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.password{
+            self.loginLogo.image = UIImage(named: "icon_normal")
+        }
+    }
+    // 点击空白处收起键盘
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    // 点击Return登录
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.Login()
         return true
@@ -19,6 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.password.isSecureTextEntry = true
         self.password.delegate = self
         // Do any additional setup after loading the view.
@@ -27,16 +41,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         guard let _ = UserDefaults.standard.string(forKey: "token") else{
-            
             return
         }
+        //登录成功 进去主页
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let secondVC = storyboard.instantiateViewController(withIdentifier: "TabController") as? MainViewController else{
+        guard let mainVC = storyboard.instantiateViewController(withIdentifier: "TabController") as? MainViewController else{
             print("not found ")
             return
         }
         print("go to home")
-        self.present(secondVC, animated: true, completion: nil)
+        self.present(mainVC, animated: true, completion: nil)
     }
     
     func requestWithJSONBody(urlString: String, parameters: [String: Any], completion: @escaping (Data) -> Void){
@@ -52,6 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         fetchedDataByDataTask(from: request, completion: completion)
     }
+    
     private func fetchedDataByDataTask(from request: URLRequest, completion: @escaping (Data) -> Void){
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -65,17 +80,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         task.resume()
     }
+    
+    // 存储token
     func store(with token: String){
         print(token)
         UserDefaults.standard.set(token, forKey: "token")
         print("stored")
     }
     
+    @IBOutlet weak var loginLogo: UIImageView!
     @IBOutlet weak var cardnum: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginFail: UIButton!
-    
     @IBOutlet weak var loginButton: UIButton!
+    
     
     var paras = ["cardnum": "", "password": "", "platform": "darwin"]
     let urlstring:String = "https://myseu.cn/ws3/auth"
@@ -92,6 +110,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         print("don't know what to do")
+        
+        // 获取token，存在的话直接跳转
         guard let token = UserDefaults.standard.string(forKey: "token") else{
             if (self.cardnum.text == "" || self.password.text == ""){
                 self.view.bringSubview(toFront: self.loginFail)

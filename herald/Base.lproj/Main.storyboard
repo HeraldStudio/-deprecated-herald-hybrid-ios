@@ -71,6 +71,7 @@
                         <outlet property="cardnum" destination="Peh-Sy-UVl" id="4ea-eD-TXg"/>
                         <outlet property="loginButton" destination="Er8-I7-xIR" id="0al-1d-tjo"/>
                         <outlet property="loginFail" destination="zDJ-3q-Tge" id="epk-L0-FcX"/>
+                        <outlet property="loginLogo" destination="hm2-N3-a84" id="ocz-Dl-ywh"/>
                         <outlet property="password" destination="S3c-QW-CQo" id="Y0d-4b-nJb"/>
                     </connections>
                 </viewController>
@@ -86,10 +87,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EvL-3A-gbR">
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EvL-3A-gbR">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem title="主页" id="lcz-As-N7v"/>
                                     <tabBarItem title="活动" id="nse-Qf-EtS"/>
@@ -97,6 +98,17 @@
                                     <tabBarItem title="我的" id="yec-5y-nOf"/>
                                 </items>
                             </tabBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRF-ff-s6t">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="toolbar_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qoh-UZ-ghM">
+                                        <rect key="frame" x="93" y="0.0" width="189" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKG-F3-y9G">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -119,17 +131,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRF-ff-s6t">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="toolbar_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qoh-UZ-ghM">
-                                        <rect key="frame" x="93" y="0.0" width="189" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcn-Hk-9Mz">
                                 <rect key="frame" x="67" y="526" width="240" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -149,7 +150,6 @@
                         <viewLayoutGuide key="safeArea" id="U6i-dj-SWT"/>
                     </view>
                     <connections>
-                        <outlet property="myview" destination="gbr-xe-m4h" id="g2w-AC-uHQ"/>
                         <outlet property="navBack" destination="87s-Uu-tl7" id="qBA-fK-PBe"/>
                         <outlet property="navBar" destination="BRF-ff-s6t" id="ErI-D7-RJe"/>
                         <outlet property="navTitle" destination="r4q-2T-gl5" id="ArH-nv-ISM"/>

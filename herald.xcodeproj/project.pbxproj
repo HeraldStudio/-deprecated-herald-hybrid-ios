@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9E07403C2137A9A900A8B27E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E07403B2137A9A900A8B27E /* MainViewController.swift */; };
+		9E23654C213C17CC006EF2BC /* logo_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E23654A213C17CC006EF2BC /* logo_180.png */; };
+		9E23654D213C17CC006EF2BC /* logo_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E23654B213C17CC006EF2BC /* logo_120.png */; };
 		9E2BDC80213B7AF800739C67 /* toolbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E2BDC71213B7AF600739C67 /* toolbar_icon.png */; };
 		9E2BDC81213B7AF800739C67 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E2BDC72213B7AF600739C67 /* splash.png */; };
 		9E2BDC82213B7AF800739C67 /* notification_tab_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E2BDC73213B7AF600739C67 /* notification_tab_icon.png */; };
@@ -64,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		9E07403B2137A9A900A8B27E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9E23654A213C17CC006EF2BC /* logo_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_180.png; path = Assets.xcassets/logo_180.png; sourceTree = "<group>"; };
+		9E23654B213C17CC006EF2BC /* logo_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_120.png; path = Assets.xcassets/logo_120.png; sourceTree = "<group>"; };
 		9E2BDC71213B7AF600739C67 /* toolbar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbar_icon.png; path = Assets.xcassets/toolbar_icon.png; sourceTree = "<group>"; };
 		9E2BDC72213B7AF600739C67 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = Assets.xcassets/splash.png; sourceTree = "<group>"; };
 		9E2BDC73213B7AF600739C67 /* notification_tab_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = notification_tab_icon.png; path = Assets.xcassets/notification_tab_icon.png; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 				9E07403B2137A9A900A8B27E /* MainViewController.swift */,
 				9EBBF50F21286AE7002FA50C /* Main.storyboard */,
 				9EBBF51221286AE8002FA50C /* Assets.xcassets */,
+				9E23654B213C17CC006EF2BC /* logo_120.png */,
+				9E23654A213C17CC006EF2BC /* logo_180.png */,
 				9E2BDC7A213B7AF700739C67 /* activity_tab_icon_selected.png */,
 				9E2BDC7B213B7AF700739C67 /* activity_tab_icon.png */,
 				9E2BDC76213B7AF700739C67 /* back_button.png */,
@@ -306,8 +312,10 @@
 				9E2BDC8C213B7AF800739C67 /* personal_tab_icon.png in Resources */,
 				9E2BDC8A213B7AF800739C67 /* activity_tab_icon.png in Resources */,
 				9E2BDC81213B7AF800739C67 /* splash.png in Resources */,
+				9E23654C213C17CC006EF2BC /* logo_180.png in Resources */,
 				9E2BDC82213B7AF800739C67 /* notification_tab_icon.png in Resources */,
 				9E2BDC83213B7AF800739C67 /* home_tab_icon_selected.png in Resources */,
+				9E23654D213C17CC006EF2BC /* logo_120.png in Resources */,
 				9E2BDC85213B7AF800739C67 /* back_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
